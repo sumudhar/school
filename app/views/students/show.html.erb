@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<% @student.attributes.each do |col, value| %>
+ <p>
+  <% unless col.equal?('image')%>
+  <%= col %>:        <%= value%> <br\>
+  <% end %>
+ </p>
+<% end %>
+<%= image_tag  "http://localhost:3000/uploads/student/image/#{@student.id}/thumb_one.jpg" if @student.image? %>
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>
+
+

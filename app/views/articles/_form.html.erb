@@ -1,0 +1,37 @@
+<%= form_for @article do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+      <ul>
+      <% @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :published_on %><br />
+    <%= f.text_field :published_on %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  
+   <div class="field">
+       <%= f.label :country_id %><br />
+        <%= f.collection_select :country_id, Country.order(:name), :id, :name, include_blank: true %>
+       </div>
+       <div class="field">
+       <%= f.label :state_id, "State or Province" %><br />
+       <%= f.grouped_collection_select :state_id, Country.order(:name), :states, :name, :id, :name, include_blank: true %>
+       </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

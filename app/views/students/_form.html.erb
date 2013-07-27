@@ -1,0 +1,59 @@
+<%= form_for(@student) do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+      <%=f.label :aadhar%>      <%=f.text_field :aadhar %></br >
+       <%=f.label :medium%>          <%= f.select :medium, [ 'English', 'Telugu'], :prompt => 'Select Medium' %><br/>
+        <div class="field">
+       <%= f.label :course_id,"Class" %>  <%= f.collection_select :course_id, Course.order(:id), :id, :name, include_blank: true %> <br />
+       </div>
+       <div class="field">
+       <%= f.label :section, "Section" %>
+       <%= f.grouped_collection_select :section, Course.order(:id), :sections, :name, :id, :name, include_blank: true %> <br />
+       </div>      
+      <%=f.label :admission_no%>     <%=f.text_field :admission_no %></br >       
+       <%=f.label :admission_date%>   <%= f.text_field :admission_date %></br >
+       <%=f.label "Surname" %>      <%=f.text_field :sur_name %> </br >
+       <%=f.label "Student Name"%>        <%=f.text_field :name %> </br >
+       <%=f.label :gender%>          <%= f.select :gender, [ 'Male', 'Female'], :prompt => 'Select One' %><br />
+       <%=f.label :birth_date%>       <%= f.text_field :birth_date %></br >
+       <%=f.label :father_name%>      <%=f.text_field :father_name %></br >
+       <%=f.label :mother_name%>      <%=f.text_field :mother_name %></br >
+       <%=f.label :mother_tongue%>      <%=f.text_field :mother_tongue %></br >
+       <%=f.label :religion_id%>      <%= f.select(:religion_id, Religion.all.collect {|p| [ p.name, p.id ] },:prompt=>"Select Religion") %></br >
+       <%=f.label :community%>        <%= f.select(:community, Community.all.collect {|p| [ p.name, p.id ] },:prompt=>"Select Community") %></br >
+       <%=f.label :caste%>            <%=f.text_field :caste %></br >
+       <%=f.label :nationality%>      <%=f.text_field :nationality %></br >
+       <%=f.label " Blood Group"%>    <%=f.select :blood_group, [ 'A+','A-','B+','B-','O+','O-','AB+','AB-'], :prompt => 'UnKnown' %></br >
+        <%=f.label :occupation%>            <%=f.text_field :occupation %></br >
+       <%=f.label :annual_income%>   Rs..<%=f.text_field :annual_income,  cols: 50, rows: 3 %> Per Year</br >
+       <%=f.label :moles%>            <%=f.text_area :moles,  cols: 50, rows: 3 %></br >
+       <%= f.file_field :image %> </br>
+       <%= f.label :remote_image_url, "or image URL" %>  <%= f.text_field :remote_image_url %> <br \>
+       <%=f.label "address" %>       <%=f.text_area :address,  cols: 50, rows: 5 %></br >
+      <%=f.label "street" %>      <%=f.text_field :street %></br >
+      <%=f.label "city" %>      <%=f.text_field :city %></br >
+      <%=f.label "state" %>      <%=f.text_field :state %></br >
+      <%=f.label "pincode" %>      <%=f.text_field :pincode %></br >
+      <%=f.label "country" %>      <%=f.text_field :country %></br >
+      <%=f.label "contactno" %>      <%=f.text_field :contact_no_one %></br >
+      <%=f.label "contactno2" %>      <%=f.text_field :contact_no_two %></br >
+      <%=f.label "Emergency Contact" %>      <%=f.text_field :immidiate_contact_no %></br >
+      <%=f.label "email" %>      <%=f.text_field :email %> 
+      
+
+  <div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+  

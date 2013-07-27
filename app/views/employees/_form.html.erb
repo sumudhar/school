@@ -1,0 +1,52 @@
+<%= form_for(@employee) do |f| %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div> 
+       <%=f.label :first_name %>      <%=f.text_field :first_name %> </br >
+       <%=f.label :middle_initial%>   <%=f.text_field :middle_initial %> </br >
+       <%=f.label :last_name%>        <%=f.text_field :last_name %> </br >
+       <%=f.label :gender%>           <%= f.select :gender, [ 'Male', 'Female'], :prompt => 'Select One' %><br />
+       <%=f.label :birth_date%>       <%= f.text_field :birth_date %></br >
+       <%=f.label :employee_no%>      <%=f.text_field :employee_no %></br >       
+       <%=f.label :joining_date%>     <%= f.text_field  :joining_date %>
+       <%=f.label "Qualification "%>  <%=f.text_field :qualification %> </br >
+       <%=f.label "Total Experience "%>   <%=f.text_field :experience %> </br >
+       <%=f.label "Previous Company"%>    <%=f.text_field :previous_company %> </br >
+       <%=f.label :nationality%>      <%=f.text_field :nationality %></br >
+       <%=f.label :address%>          <%=f.text_area :address ,  cols: 50, rows: 3 %></br >
+       <%=f.label :street%>       <%= f.text_field :street %></br >
+       <%=f.label :city%>       <%= f.text_field :city %></br >
+       <%=f.label :state%>      <%=f.text_field :state %></br >       
+       <%=f.label :pincode%>     <%= f.text_field :pincode %></br >
+       <%=f.label :phone%>     <%= f.text_field :phone %></br >
+       <%=f.label :phone_one%>     <%= f.text_field :phone_one %></br >
+       <%=f.label :immidiate_contactno%>     <%= f.text_field :immidiate_contactno %></br >
+       <%=f.label :email%>     <%= f.text_field :email %></br >
+       <%=f.label :father_name%>     <%= f.text_field :father_name %></br >
+       <%=f.label :mother_name%>     <%= f.text_field :mother_name %></br >
+       <%=f.label :marrital_status%>     <%= f.select :marrital_status, [ 'Single', 'Married','Widow','Divorced'], :prompt => 'Select One' %></br >
+       <%=f.label "Qualification "%>  <%=f.text_field :qualification %> </br >
+       <%=f.label "Select Photo"%>   <%= f.file_field :employee_image %> </br>
+        <div class="field">
+       <%= f.label :country_id %><br />
+        <%= f.collection_select :country_id, Country.order(:name), :id, :name, include_blank: true %>
+       </div>
+       <div class="field">
+       <%= f.label :state_id, "State or Province" %><br />
+       <%= f.grouped_collection_select :state_id, Country.order(:name), :states, :name, :id, :name, include_blank: true %>
+       </div>
+      </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
